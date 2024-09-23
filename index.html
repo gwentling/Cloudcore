@@ -8,6 +8,9 @@
     <style>
         body {
             display: flex;
+            flex-direction: column; /* Arrange items vertically */
+            min-height: 100vh; /* Ensure body takes full height */
+            margin: 0; /* Remove default margin */
         }
         nav {
             width: 200px;
@@ -18,6 +21,16 @@
         .content {
             flex-grow: 1;
             padding: 15px;
+            display: flex; /* Use flexbox for content layout if needed */
+            flex-direction: column; /* Arrange content vertically */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative; /* Ensure footer is relative to content */
+            width: 100%;
         }
     </style>
 </head>
@@ -43,4 +56,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
