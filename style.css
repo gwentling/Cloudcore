@@ -1,44 +1,54 @@
+/* General body styles */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Navigation styles */
 nav {
-    background-color: #333; 
-    padding: 10px; 
-    width: 200px; /* Ensure the nav has the same width as defined in HTML */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    background-color: #333;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-    margin-bottom: 10px; /* Space between items in the sidebar */
+    margin-bottom: 10px;
 }
 
 nav ul li a {
-    color: white; 
-    text-decoration: none; 
-    display: block; /* Make the entire list item clickable */
-    padding: 10px; /* Add padding for better click area */
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
 }
 
 nav ul li a:hover {
-    background-color: #444; /* Change background on hover for better visibility */
-    text-decoration: underline; 
+    background-color: #444;
+    text-decoration: underline;
 }
 
+/* Content styles */
 .content {
-    flex-grow: 1; /* Ensures the content area takes up remaining space */
-    padding: 15px; /* Padding for the content area */
+    flex-grow: 1;
+    padding: 15px;
 }
 
+/* Footer styles */
 footer {
     text-align: center;
     padding: 20px;
     background-color: #333;
     color: white;
-    position: relative; /* Keep footer relative to ensure proper positioning */
-    bottom: 0;
     width: 100%;
 }
+
 
