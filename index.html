@@ -8,34 +8,63 @@
     <style>
         body {
             display: flex;
-            flex-direction: column; /* Arrange items vertically */
-            min-height: 100vh; /* Ensure body takes full height */
+            flex-direction: column; /* Stack elements vertically */
+            min-height: 100vh; /* Full viewport height */
             margin: 0; /* Remove default margin */
         }
-        nav {
-            width: 200px;
+        nav.top-nav {
+            background-color: #333; /* Top nav color */
+            padding: 10px; 
+            width: 100%; /* Full width for top nav */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+        nav.sidebar {
+            width: 200px; /* Fixed width for sidebar */
             background-color: #f4f4f4;
             padding: 15px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
         .content {
-            flex-grow: 1;
-            padding: 15px;
-            display: flex; /* Use flexbox for content layout if needed */
-            flex-direction: column; /* Arrange content vertically */
+            flex-grow: 1; 
+            display: flex; /* Use flexbox for layout */
+            padding: 15px; 
         }
         footer {
             text-align: center;
             padding: 20px;
             background-color: #333;
             color: white;
-            position: relative; /* Ensure footer is relative to content */
             width: 100%;
+        }
+        nav ul {
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        nav ul li {
+            display: inline; 
+            margin-right: 15px; 
+        }
+        nav ul li a {
+            color: white; 
+            text-decoration: none; 
+        }
+        nav ul li a:hover {
+            text-decoration: underline; 
         }
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <nav class="sidebar">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -56,5 +85,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
