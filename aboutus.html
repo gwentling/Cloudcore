@@ -8,8 +8,22 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
         }
         nav {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
             width: 200px;
             background-color: #f4f4f4;
             padding: 15px;
@@ -19,10 +33,17 @@
             flex-grow: 1;
             padding: 15px;
         }
+        .about {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <nav>
+    <header>
+        Collaborative Website
+    </header>
+
+    <nav class="sidebar">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -31,14 +52,15 @@
         </ul>
     </nav>
 
-    <div class="content">
+    <div class="content" id="home">
         <h1>Welcome to Our Collaborative Website!</h1>
         <p>Your content goes here.</p>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div class="content about" id="about">
+        <h1>About Us</h1>
+        <p>Welcome to our collaborative website! </p>
 
+    <script src="script.js"></script>
 </body>
 </html>
