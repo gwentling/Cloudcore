@@ -37,7 +37,7 @@ footer {
     padding: 20px;
     background-color: #333;
     color: white;
-    position: relative; /* Change to relative to prevent overlap */
+    position: relative; /* Keep footer relative to ensure proper positioning */
     bottom: 0;
     width: 100%;
 }
