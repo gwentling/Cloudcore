@@ -32,3 +32,13 @@ nav ul li a:hover {
     padding: 15px; /* Padding for the content area */
 }
 
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    position: relative; /* Change to relative to prevent overlap */
+    bottom: 0;
+    width: 100%;
+}
+
