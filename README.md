@@ -13,7 +13,7 @@
 3. Open 'index.html' in a browser
 
 
-## New Features
+## Sprint 1 - New Features 
 - **Design and Styling**: Call-to-action button, hover effects, background image for main display
 - **Navigation**: Top fixed-navigation bar created
 - **Menu**: Tabbed interface for menu categories created
