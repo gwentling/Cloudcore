@@ -67,7 +67,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 }
 
 .badge {
-  padding: .2em .2em;
+  display: inline-block; 
+  font-size: 0.8em;
+  padding: 0.1em 0.2em;
+  min-width: auto;
+  min-height: auto;
 }
 
 .small-tag {
