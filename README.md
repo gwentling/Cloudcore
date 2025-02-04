@@ -21,3 +21,8 @@
 - **About**: Hours and restaurant history added
 - **Contact**: Restaurant address and phone number added
 
+
+## Spring 2 - New Features
+- **Design and Styling**: Lowered text size of menu descriptions
+- **Menu**: Added image for each menu item
+
