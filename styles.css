@@ -112,3 +112,56 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 #Desserts p {
     font-size: 30px;
 }
+
+/* Profile Page Styling */
+.profile-container {
+    background-color: white;
+    padding: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-container label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.profile-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.profile-container input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.profile-container button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.profile-container button:hover {
+    background-color: #0056b3;
+}
