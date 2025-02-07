@@ -20,9 +20,10 @@
 - **Menu**: All menu items with descriptions and prices added
 - **About**: Hours and restaurant history added
 - **Contact**: Restaurant address and phone number added
+- - **Admin Account**: Added a dummy user account to test Admin login interfaces
 
 
 ## Spring 2 - New Features
 - **Design and Styling**: Lowered text size of menu descriptions
 - **Menu**: Added image for each menu item
-
+- **User Account**: Added a dummy user account to test customer login interfaces
