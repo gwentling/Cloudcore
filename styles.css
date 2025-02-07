@@ -67,7 +67,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 }
 
 .badge {
-  padding: .2em .2em;
+  font-size: 0.6em;   
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em; 
+  vertical-align: middle;
 }
 
 .small-tag {
@@ -102,13 +105,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 
 /* Menu descriptions */
 #Appetizers p {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #Entrees p {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #Desserts p {
-    font-size: 30px;
+    font-size: 25px;
 }
