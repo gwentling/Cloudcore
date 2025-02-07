@@ -54,4 +54,8 @@ INSERT INTO Dishes (dish_id, dish_name, description, price, meal_type, category_
 
 -- Insert Admin User Account
 INSERT INTO Users (user_id, username, password, role) VALUES
-(1, 'admin_user', 'hashed_password_here', 'Admin');
+(1, 'admin_user', 'Password', 'Admin');
+
+-- Insert Fake Regular User Account (Dummy User)
+INSERT INTO Users (user_id, username, password, role) VALUES
+(2, 'DummyUser', 'Dummy', 'Customer');
