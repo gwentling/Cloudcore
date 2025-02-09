@@ -29,4 +29,4 @@
 - **User Account**: Added a dummy user account to test customer login interfaces
 - **Profile**: Created profile page (profilepage.html)
 - **Profile**: Added navbar (not functional yet)
-- **Profile**: Added editable profile information and 'save changes' button
+- **Profile**: Added modifiable profile information and 'save changes' button
