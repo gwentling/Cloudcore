@@ -157,14 +157,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 }
 
 .profile-container button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
     background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    font-size: 1.2rem; 
+    width: 100%; 
+    cursor: pointer; 
 }
 
 .profile-container button:hover {
