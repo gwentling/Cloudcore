@@ -23,10 +23,16 @@
 - **Admin Account**: Added a dummy user account to test Admin login interfaces
 
 
-## Spring 2 - New Features
+## Sprint 2 - New Features
 - **Design and Styling**: Lowered text size of menu descriptions
 - **Menu**: Added image for each menu item
 - **User Account**: Added a dummy user account to test customer login interfaces
 - **Profile**: Created profile page (profilepage.html)
 - **Profile**: Added navbar (not functional yet)
 - **Profile**: Added modifiable profile information and 'save changes' button
+
+
+## Sprint 3 - New Features
+- **Design and Styling**: Formatting updates on profile page
+- **Ordering**: Created add to cart (add_to_cart.php)
+- **Ordering**: Created cart (cart.php)  
