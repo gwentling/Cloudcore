@@ -33,6 +33,6 @@
 
 
 ## Sprint 3 - New Features
-- **Design and Styling**: Formatting updates on profile page
+- **Design and Styling**: Formatting updates for user profile page (profilepage.html)
 - **Ordering**: Created add to cart (add_to_cart.php)
 - **Ordering**: Created cart (cart.php)  
