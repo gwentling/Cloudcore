@@ -1,72 +1,63 @@
+<?php
+session_start(); // Start session to track the order
+
+// Connect to database
+$pdo = new PDO("mysql:host=localhost;dbname=restaurant", "root", "");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// Fetch menu items categorized
+$query = "SELECT * FROM Dishes ORDER BY 
+          FIELD(meal_type, 'Appetizer', 'Entree', 'Dessert'), dish_name";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$menuItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Handle Add to Order
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dish_id'])) {
+    $dish_id = $_POST['dish_id'];
+    $dish_name = $_POST['dish_name'];
+    $price = $_POST['price'];
+    
+    if (!isset($_SESSION['order'])) {
+        $_SESSION['order'] = [];
+    }
+    
+    // Add dish to session order
+    if (isset($_SESSION['order'][$dish_id])) {
+        $_SESSION['order'][$dish_id]['quantity'] += 1;
+    } else {
+        $_SESSION['order'][$dish_id] = ['name' => $dish_name, 'price' => $price, 'quantity' => 1];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile Page</title>
-
-    
-<!--Google Font-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alumni+Sans">
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
 </head>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg fixed-top opacity-hover-off" id="myNavbar">
-  <div class="container-fluid">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#" style="font-size: 2rem;">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#menu" style="font-size: 2rem;">MENU</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about" style="font-size: 2rem;">ABOUT</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact" style="font-size: 2rem;">CONTACT</a>
-        </li>
-      </ul>
-  </div>
-</nav>
-
-    
-<body style="background-image: url('images/KoreanDishesBackground2.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
-    <header>
-    </header>
-    
-    <main>
-        </br>
-        </br>
-        <section class="profile-container">
-            <h2></h2>
-            <form id="profileForm">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" value="John Doe" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="johndoe@example.com" required>
-                
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" value="123-456-7890" required>
-                
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="123 Main St, City, Country" required>
-                
-                <button type="submit" class="btn">Save Changes</button>
-            </form>
-        </section>
-    </main>
-
-    <script>
-        document.getElementById("profileForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Profile updated successfully!");
-        });
-    </script>
+<body>
+    <h1>Menu</h1>
+    <a href="viewCart.php">View Cart (<?php echo isset($_SESSION['order']) ? count($_SESSION['order']) : 0; ?>)</a>
+    <hr>
+    <?php
+    $currentCategory = '';
+    foreach ($menuItems as $item):
+        if ($item['meal_type'] !== $currentCategory) {
+            $currentCategory = $item['meal_type'];
+            echo "<h2>{$currentCategory}s</h2>";
+        }
+    ?>
+        <p><strong><?php echo $item['dish_name']; ?></strong> - $<?php echo number_format($item['price'], 2); ?></p>
+        <form method="post">
+            <input type="hidden" name="dish_id" value="<?php echo $item['dish_id']; ?>">
+            <input type="hidden" name="dish_name" value="<?php echo $item['dish_name']; ?>">
+            <input type="hidden" name="price" value="<?php echo $item['price']; ?>">
+            <button type="submit">Add to Order</button>
+        </form>
+    <?php endforeach; ?>
 </body>
 </html>
+
+
