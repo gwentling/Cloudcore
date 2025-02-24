@@ -43,7 +43,7 @@
         </br>
         </br>
         <section class="profile-container">
-            <h2>My Profile</h2>
+            <h2></h2>
             <form id="profileForm">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" value="John Doe" required>
