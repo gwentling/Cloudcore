@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start session to track the order
+session_start(); 
 
 // Connect to database
 $pdo = new PDO("mysql:host=localhost;dbname=restaurant", "root", "");
