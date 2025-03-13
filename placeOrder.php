@@ -30,10 +30,10 @@ foreach ($dishes as $dish) {
     <nav class="navbar navbar-expand-lg fixed-top opacity-hover-off" id="myNavbar">
       <div class="container-fluid">
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#" style="font-size: 2rem;">HOME</a></li>
-            <li class="nav-item"><a class="nav-link" href="#menu" style="font-size: 2rem;">MENU</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about" style="font-size: 2rem;">ABOUT</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact" style="font-size: 2rem;">CONTACT</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html" style="font-size: 2rem;">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#menu" style="font-size: 2rem;">MENU</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#about" style="font-size: 2rem;">ABOUT</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#contact" style="font-size: 2rem;">CONTACT</a></li>
           </ul>
       </div>
     </nav>
