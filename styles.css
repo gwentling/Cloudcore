@@ -1,6 +1,11 @@
 body, html {height: 100%}
 body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 
+/* So nav bar doesn't cover text */
+header {
+    padding-top: 80px; 
+}
+
 
 /* Custom styles for Navbar */
 .opacity-hover-off {
@@ -21,12 +26,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
   color: black ;
 }
 
+
+
+
 /* Hide on small screens */
 @media (max-width: 992px) {
   #myNavbar {
     display: none;
   }
 }
+
+
+
 
 /* Custom styles for Header */
 .bg-img {
@@ -40,6 +51,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 .btn {
   min-width: 250px;
 }
+
+
+
 
 /*Custom styles for Menu box*/
 .btn.hover-btn:hover {
@@ -92,6 +106,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 }
 
 
+
+
 /* Custom CSS for greyscale images */
 .img-greyscale {
   filter: grayscale(100%);
@@ -115,3 +131,98 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Alumni Sans", sans-serif}
 #Desserts p {
     font-size: 25px;
 }
+
+
+
+
+/* placeOrder Page Styling */
+.place-order-page {
+    background-image: url('images/KoreanDishesBackground2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Category Headers */
+.place-order-category h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4500;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* Divider Between Categories */
+.place-order-divider {
+    border: 2px solid #000;
+    width: 50%;
+    margin: 10px auto;
+}
+
+.place-order-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+/* Dish Items Container */
+.place-order-items-container {
+    margin-bottom: 40px;
+}
+
+/* List Item Styling */
+.place-order-item {
+    padding: 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Dish Name & Price Styling */
+.dish-title-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .dish-title-price h3 {
+        font-weight: bold;
+        margin-right: 15px;
+    }
+
+    .dish-title-price .price {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+/* Description & Add to Cart on the Same Line */
+.desc-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Description Styling */
+.description {
+    flex-grow: 1;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+    .add-to-cart-btn:hover {
+        background-color: red;
+        color: white;
+    }

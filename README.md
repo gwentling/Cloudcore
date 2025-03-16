@@ -36,3 +36,9 @@
 - **Design and Styling**: Formatting updates for user profile page (profilepage.html)
 - **Ordering**: Created add to cart (add_to_cart.php)
 - **Ordering**: Created cart (cart.php)  
+
+
+## Sprint 4 - New Features
+- **Styling**: Designed placeOrder.php visuals
+- **Ordering**: Linked menu to database (placeOrder.php)
+- **Functionality**: Fixed navbar functions and visual issues
