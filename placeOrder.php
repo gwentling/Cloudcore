@@ -1,15 +1,65 @@
 <?php
-require_once('db_connect.php');
 session_start();
+require 'db_connect.php';  
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
-$query = "SELECT dish_name, description, price, meal_type FROM Dishes ORDER BY FIELD(meal_type, 'Appetizer', 'Entree', 'Dessert')";
-$statement = $db->prepare($query);
-$statement->execute();
-$dishes = $statement->fetchAll(PDO::FETCH_ASSOC);
+// Fetch dishes along with category name from the Categories table
+$sql = "SELECT d.dish_name, d.price, d.description, c.category_name 
+        FROM dishes d
+        JOIN categories c ON d.category_id = c.category_id
+        ORDER BY c.category_name";  
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$categories = ['Appetizer' => [], 'Entree' => [], 'Dessert' => []];
+// Organize dishes by category name
+$categories = [];
 foreach ($dishes as $dish) {
-    $categories[$dish['meal_type']][] = $dish;
+    $categories[$dish['category_name']][] = $dish;
+}
+
+// Sort categories to move 'Desserts' to the end
+uksort($categories, function ($a, $b) {
+    if ($a === 'Desserts') return 1;
+    if ($b === 'Desserts') return -1;
+    return strcmp($a, $b); 
+});
+
+
+// Initialize cart if not set
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+// Handle "Add to Cart" form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dish_name'], $_POST['price'])) {
+    $dish_name = $_POST['dish_name'];
+    $price = floatval($_POST['price']);
+    $found = false;
+
+    // Loop through the cart to see if the dish already exists
+    foreach ($_SESSION['cart'] as &$item) {
+        if ($item['dish_name'] === $dish_name) {
+            // If dish is found, increment the quantity
+            $item['quantity'] += 1;
+            $found = true;
+            break;
+        }
+    }
+
+    // If dish is not found, add it with quantity 1
+    if (!$found) {
+        $_SESSION['cart'][] = [
+            'dish_name' => $dish_name,
+            'price' => $price,
+            'quantity' => 1 
+        ];
+    }
+
+    header("Location: checkout.php");
+    exit;
 }
 ?>
 
@@ -19,62 +69,36 @@ foreach ($dishes as $dish) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Order</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alumni+Sans">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<body style="background-image: url('images/KoreanDishesBackground2.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
-    
-    <nav class="navbar navbar-expand-lg fixed-top opacity-hover-off" id="myNavbar">
-      <div class="container-fluid">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html" style="font-size: 2rem;">HOME</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#menu" style="font-size: 2rem;">MENU</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#about" style="font-size: 2rem;">ABOUT</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact" style="font-size: 2rem;">CONTACT</a></li>
-          </ul>
-      </div>
-    </nav>
-
-    <header>
-        <section class="profile-container">
-        <h1></h1>
-    </header>
-
-    <main class="pt-1">
-        <?php foreach ($categories as $category => $dishes): ?>
-            <section class="place-order-category">
-                <h2><?php echo htmlspecialchars($category); ?></h2>
+<body class="place-order-page">
+    <div class="container">
+        <h1 class="text-center">Menu</h1>
+        
+        <?php foreach ($categories as $category_name => $dishes): ?>
+            <div class="place-order-category">
+                <h2><?php echo htmlspecialchars($category_name); ?></h2>  
                 <div class="place-order-divider"></div>
-                
-                <div class="place-order-items-container">
-                    <ul class="place-order-list">
-                        <?php foreach ($dishes as $dish): ?>
-                            <li class="place-order-item">
-                                <div class="item-info">
-                                    <!-- Dish Name & Price on One Line -->
-                                    <div class="dish-title-price">
-                                        <h3><?php echo htmlspecialchars($dish['dish_name']); ?></h3>
-                                        <p class="price">$<?php echo number_format($dish['price'], 2); ?></p>
-                                    </div>
-                                    
-                                    <!-- Description & Add to Cart Button on the Same Line -->
-                                    <div class="desc-button-container">
-                                        <p class="description"><?php echo htmlspecialchars($dish['description']); ?></p>
-                                        <form action="orderCart.php" method="POST">
-                                            <input type="hidden" name="dish_name" value="<?php echo htmlspecialchars($dish['dish_name']); ?>">
-                                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($dish['price']); ?>">
-                                            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </section>
+                <ul class="place-order-list">
+                    <?php foreach ($dishes as $dish): ?>
+                        <li class="place-order-item">
+                            <div class="dish-title-price">
+                                <h3><?php echo htmlspecialchars($dish['dish_name']); ?></h3>
+                                <p class="price">$<?php echo number_format($dish['price'], 2); ?></p>
+                            </div>
+                            <div class="desc-button-container">
+                                <p class="description"><?php echo htmlspecialchars($dish['description']); ?></p>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="dish_name" value="<?php echo htmlspecialchars($dish['dish_name']); ?>">
+                                    <input type="hidden" name="price" value="<?php echo htmlspecialchars($dish['price']); ?>">
+                                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                                </form>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         <?php endforeach; ?>
-    </main>
+    </div>
 </body>
+</html>
